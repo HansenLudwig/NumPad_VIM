@@ -2,23 +2,24 @@
 
 #Include "fn_lab.ahk" ; levenshtein_distance()
 
-#HotIf WinActive("ahk_exe Code.exe")
-*>!J:: { ; [Ctrl+|Shift+]Alt+J
+#HotIf WinActive("ahk_exe devecostudio64.exe")
+
+*>!J:: { ; [Ctrl|Shift]+ Alt+J
     Suspend false
     Send_HK("{Left}")
 }
 
-*>!K:: { ; [Ctrl+|Shift+]Alt+K
+*>!K:: { ; [Ctrl|Shift]+ Alt+K
     Suspend false
     Send_HK("{Down}")
 }
 
-*>!L:: { ; [Ctrl+|Shift+]Alt+L
+*>!L:: { ; [Ctrl|Shift]+ Alt+L
     Suspend false
     Send_HK("{Right}")
 }
 
-*>!I:: { ; [Ctrl+|Shift+]Alt+I
+*>!I:: { ; [Ctrl|Shift]+ Alt+I
     Suspend false
     Send_HK("{Up}")
 }
@@ -64,13 +65,8 @@
     Send_HK("{Backspace}")
 }
 
-~^s:: ; Ctrl + S || Win + D: Reload
-~#d:: { ; Only for VSCode which should be my ahk editor.
-    Suspend false
-    Sleep 500
-    Reload
-}
 
-:*:__n::__name__ == "__main__":{Enter}main()
+:*:`nimpor::{Enter}import  from `'`';{Left 2}
 :*:`nels::else: {#} {Enter}
 :*:def main(::def main() -> None:{Enter}
+:O:eq:: = `;{Left}
