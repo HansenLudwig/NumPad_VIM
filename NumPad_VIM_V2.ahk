@@ -121,6 +121,7 @@ SetSuspend()
 }
 
 #Include ".\lab\NumPad_VSCode.ahk"
+#Include ".\lab\NumPad_DevEco.ahk"
 
 #Include ".\lab\NumPad_lab.ahk"
 
