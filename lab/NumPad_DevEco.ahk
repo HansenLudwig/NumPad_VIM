@@ -80,16 +80,32 @@
 ;           例如, 如果 :o:ar::aristocrat 为热字串, 那么输入 "ar" 后跟着空格键会产生不含尾随空格的 "aristocrat", 这样可以让您不需要按住 Backspace 的情况下补上单词的复数或所有格形式. 使用 O0(字母 O 后跟着零) 来关闭此选项.
 ; B0: 【不】自动退格来删除您输入的缩写. 关闭此选项后可以使用 B 来启用. 
 :*:`nimpor::{Enter}import  from `'`';{Left 2}
-:*:/** ::/**  */{Left 3}
+:*:/** ::{NumpadDiv}**  *{NumPadDiv}{Left 3}
+:://::{NumpadDiv}
 
-:*O:eq ::= `;{Left}
-:*O:=>::=> {`{}
+:*O:eq ::={Space}
+:*O:eqq ::=={Space}
+:*O:eeq ::==={Space}
+:*O:=> ::=> {`{}
+:*:/or ::or{Space}
+:*:or ::||{Space}
+:*:/and ::and{Space}
+:*:and ::&&{Space}
 
 :O:return::return `;{Left}
 
-:O:if::if () {`{}}{`}}{Left}{Enter}{Up}{End}{Left 3}
-:O:else::else {`{}{Enter}
-:O:while::while () {`{}}{`}}{Left}{Enter}{Up}{End}{Left 3}
-:O:for::for ( `; `; ) {`{}}{`}}{Left}{Enter}{Up}{End}{Left 7}
-:*:forE::forEach(() => {`{}}{`}});{End}{Left 9}
-:O:try::try {`{}}{`}{Enter}{Down}{Space}catch (error) {`{}{Enter}{Up 2}
+:*:/if ::if{Space}
+:*:if ::if () {`{}}{Enter}{Up}{End}{Left 3}
+:O:/else::else{Space}
+:*: else`n::{Space}else {`{}{Enter}
+:*:else`n:: else {`{}{Enter}
+:*:/while ::while{Space}
+:O:while::while () {`{}{Enter}{Up}{End}{Left 3}
+:*:/for ::for{Space}
+:*:for ::for ( `; `; ) {`{}{Enter}{Up}{End}{Left 7}
+:*?:.forE::.forEach(() => {`{}}{`}});{End}{Left 9}
+:*:/try ::try{Space}
+:*:try ::try {`{}}{`}{Enter}{Down}{Space}catch (error) {`{}{Enter}{Up 2}
+
+
+#HotIf 1

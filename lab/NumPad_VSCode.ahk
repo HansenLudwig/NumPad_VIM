@@ -74,3 +74,5 @@
 :*:__n::__name__ == "__main__":{Enter}main()
 :*:`nels::else: {#} {Enter}
 :*:def main(::def main() -> None:{Enter}
+
+#HotIf 1
