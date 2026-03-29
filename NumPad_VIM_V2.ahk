@@ -69,6 +69,9 @@ internal_cmd(cmd){
         _key_min := ''
         _last_key := ''
         for line in _val_sec {
+            if !InStr(line, '=') {
+                continue
+            }
             config := StrSplit(line, Delimiters:='=', OmitChars:= A_Space, MaxArrSize:= 2)
             _ld := lev_dist(User_Input, config[1])
             if config[2] != "0" {
