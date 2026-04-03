@@ -51,3 +51,31 @@ F12::
 }
 
 RShift:: Send 0      ;{Numpad0}
+
+~^A::
+{
+    ShowWindowTitle()
+}
+
+#HotIf 1
+
+ShowWindowTitle() {
+
+    ; 获取当前活动窗口的标题
+    activeWindowTitle := WinGetTitle("A")
+    
+    ; 获取当前鼠标位置
+    MouseGetPos(&mouseX, &mouseY)
+    
+    ; 在鼠标位置附近显示ToolTip（偏移+20像素避免遮挡鼠标指针）
+    ToolTip(activeWindowTitle, mouseX + 20, mouseY + 20)
+    ; MsgBox(activeWindowTitle)
+    
+    ; 设置定时器，1.5秒后自动移除ToolTip
+    SetTimer(RemoveToolTip, -5000)
+}
+
+; 移除ToolTip的函数
+RemoveToolTip() {
+    ToolTip  ; 清除ToolTip
+}

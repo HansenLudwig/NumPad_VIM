@@ -1,6 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
-SendMode "Input"
 #SingleInstance Force
+SendMode "Input"
 ; ====== 设置窗口标题匹配时的行为：====== ;
 SetTitleMatchMode 2 ; 1. 开头匹配; 2. 任意位置匹配; 3. 完全匹配
 #WinActivateForce
@@ -40,8 +40,9 @@ internal_cmd(cmd){
 ~^F4::
 {
     Suspend 0
+    Alt_F4_Prompt := "config, edit, spaz, reload, ..."
     User_Input := "NULL"
-    User_Input_Raw := InputBox("COH; Taimanin; GTFO; Steam/Epic/WeMod; spaz", "Run_Script")
+    User_Input_Raw := InputBox(Alt_F4_Prompt, "Run_Script")
     User_Input := User_Input_Raw.Value
     if User_Input = ""
         return
@@ -69,6 +70,9 @@ internal_cmd(cmd){
         _key_min := ''
         _last_key := ''
         for line in _val_sec {
+            if !InStr(line, '=') {
+                continue
+            }
             config := StrSplit(line, Delimiters:='=', OmitChars:= A_Space, MaxArrSize:= 2)
             _ld := lev_dist(User_Input, config[1])
             if config[2] != "0" {
