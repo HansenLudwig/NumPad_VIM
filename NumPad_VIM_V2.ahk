@@ -1,6 +1,6 @@
 ﻿#Requires AutoHotkey v2.0
-SendMode "Input"
 #SingleInstance Force
+SendMode "Input"
 ; ====== 设置窗口标题匹配时的行为：====== ;
 SetTitleMatchMode 2 ; 1. 开头匹配; 2. 任意位置匹配; 3. 完全匹配
 #WinActivateForce
@@ -19,7 +19,7 @@ SendLevel 0
 #HotIf 1
 #SuspendExempt True
 
-internal_cmd(cmd){
+internal_cmd(cmd) {
     if cmd = "list" {
         _val := IniRead("config.ini", "SHORTCUTS")
         MsgBox(_val, "List of shortcuts")
@@ -33,6 +33,17 @@ internal_cmd(cmd){
     } else if cmd = "exit" {
         ExitApp
         return 1
+    } else if cmd = "vim" {
+        try {
+            vim_switch := IniRead("config.ini", "Switches", "VIM")
+            vim_switch := vim_switch = "1" ? "0" : "1"
+            IniWrite(vim_switch, "config.ini", "Switches", "VIM")
+        } catch as err {
+            IniWrite(1, "config.ini", "Switches", "VIM")
+        }
+        vim_switch := IniRead("config.ini", "Switches", "VIM")
+        MsgBox "VIM mode set to: " (vim_switch = "1" ? "ON" : "OFF")
+        return 1
     }
     return 0 ; not internal command
 }
@@ -40,8 +51,9 @@ internal_cmd(cmd){
 ~^F4::
 {
     Suspend 0
+    Alt_F4_Prompt := "config, edit, spaz, reload, ..."
     User_Input := "NULL"
-    User_Input_Raw := InputBox("COH; Taimanin; GTFO; Steam/Epic/WeMod; spaz", "Run_Script")
+    User_Input_Raw := InputBox(Alt_F4_Prompt, "Run_Script")
     User_Input := User_Input_Raw.Value
     if User_Input = ""
         return
@@ -50,18 +62,18 @@ internal_cmd(cmd){
         return
     }
 
-    Try
+    try
     {
-        Try {
+        try {
             _val := IniRead("config.ini", "AKA", User_Input)
             _val := IniRead("config.ini", "SHORTCUTS", _val)
         }
-        Catch as err{
+        catch as err {
             _val := IniRead("config.ini", "SHORTCUTS", User_Input)
         }
         Run _val
     }
-    Catch as err ; err.What = 'IniRead' or err.What = 'Run'
+    catch as err ; err.What = 'IniRead' or err.What = 'Run'
     {
         _val := IniRead("config.ini", "SHORTCUTS")
         _val_sec := StrSplit(_val, '`n')
@@ -72,7 +84,7 @@ internal_cmd(cmd){
             if !InStr(line, '=') {
                 continue
             }
-            config := StrSplit(line, Delimiters:='=', OmitChars:= A_Space, MaxArrSize:= 2)
+            config := StrSplit(line, Delimiters := '=', OmitChars := A_Space, MaxArrSize := 2)
             _ld := lev_dist(User_Input, config[1])
             if config[2] != "0" {
                 _last_key := config[1]
@@ -87,7 +99,7 @@ internal_cmd(cmd){
         }
         if StrLen(_key_min) > 0 {
             _val := IniRead("config.ini", "SHORTCUTS", _key_min)
-            try{
+            try {
                 SetWorkingDir ".\.."
                 Run _val
                 SetWorkingDir A_InitialWorkingDir
@@ -99,7 +111,7 @@ internal_cmd(cmd){
         }
     }
     SetSuspend()
-    Return
+    return
 }
 
 ~^Lwin:: ; Ctrl+Win
@@ -109,13 +121,12 @@ internal_cmd(cmd){
     ;Sleep 50
     Send "{Lwin}"
     ;Sleep 50
-    Click 3765, 1635 ; 65, 1200
+    Click 65, 1750 ; 65, 1200
     SetSuspend()
-    Return
+    return
 }
 
-SetSuspend()
-{
+SetSuspend() {
     if (GetKeyState("NumLock", "T")) {
         Suspend True
     } else {
@@ -123,8 +134,8 @@ SetSuspend()
     }
 }
 
+#Include ".\lab\NumPad_VIM.ahk"
 #Include ".\lab\NumPad_VSCode.ahk"
 #Include ".\lab\NumPad_DevEco.ahk"
 
 #Include ".\lab\NumPad_lab.ahk"
-
