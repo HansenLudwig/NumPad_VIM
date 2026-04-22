@@ -2,6 +2,16 @@
 
 #Include "fn_lab.ahk"
 
+presetVIM() {
+    try {
+        vim_switch := IniRead("config.ini", "Switches", "VIM")
+    } catch as err {
+        IniWrite(1, "config.ini", "Switches", "VIM")
+    }
+}
+
+presetVIM()
+
 #HotIf IniRead("config.ini", "Switches", "VIM")
 
 *>!J:: { ; [Ctrl|Shift]+ Alt+J
