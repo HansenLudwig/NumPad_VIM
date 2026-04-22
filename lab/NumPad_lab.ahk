@@ -75,7 +75,55 @@ ShowWindowTitle() {
     SetTimer(RemoveToolTip, -5000)
 }
 
-; 移除ToolTip的函数
+; Remove ToolTip 
 RemoveToolTip() {
-    ToolTip  ; 清除ToolTip
+    ToolTip
+}
+
+ImportConfigFromLocal() {
+    Prompt := "
+    (
+    Local preset will overwrite current config.
+    It's suggest only BEFORE pulling files from Git! 
+    Press OK to continue.
+    )"
+
+    user_choise := MsgBox(Prompt, "Warning", "OKCancel")
+    If user_choise = "Cancel" {
+        Return
+    }
+    try {
+        FileCopy("config_local.ini", "config.ini", true)
+        ; Run "cmd.exe /c move /y config_local.ini config.ini", , "Max"
+        MsgBox("Config imported from local successfully.", "Finished", 0x30) ; 0x30 = OK + Information icon
+    }
+    catch {
+        MsgBox("Failed to import config from local. Please make sure config_local.ini exists and is not in use by other program.")
+        Return
+    }
+    
+}
+
+ExportConfigToLocal() {
+    Prompt := "
+    (
+    Current config.ini will overwrite local preset.
+    You may lost your personal settings! 
+    This should only be proceed if you just pulled files from Git! 
+    Press OK to continue.
+    )"
+
+    user_choise := MsgBox(Prompt, "Warning", 0x11) ; 0x11 = OK, Cancel + Exclamation (!)
+    If user_choise = "Cancel" {
+        Return
+    }
+    try {
+        FileCopy("config.ini", "config_local.ini", true)
+        ; Run "cmd.exe /c move /y config.ini config_local.ini", , "Max"
+        MsgBox("Config exported to local successfully.", "Finished", 0x30) ; 0x30 = OK + Information icon
+    }
+    catch {
+        MsgBox("Failed to export config to local. Please make sure config.ini exists and is not in use by other program.")
+        Return
+    }
 }

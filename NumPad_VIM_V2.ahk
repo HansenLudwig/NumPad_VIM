@@ -44,6 +44,12 @@ internal_cmd(cmd) {
         vim_switch := IniRead("config.ini", "Switches", "VIM")
         MsgBox "VIM mode set to: " (vim_switch = "1" ? "ON" : "OFF")
         return 1
+    } else if cmd = "save config" {
+        ExportConfigToLocal()
+        return 1
+    } else If cmd = "load config" {
+        ImportConfigFromLocal()
+        return 1
     }
     return 0 ; not internal command
 }
