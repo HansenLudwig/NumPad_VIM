@@ -68,8 +68,8 @@
 :*:else`n:: else {`{}{Enter}
 :*:/while ::while{Space}
 :O:while::while () {`{}{Enter}{Up}{End}{Left 3}
-:? *:/for ::for{Space}
-:*:for ::for ( `; `; ) {`{}{Enter}{Up}{End}{Left 7}
+; :? *:/for ::for{Space}
+:*:for(::for ( `; `; ) {`{}{Enter}{Up}{End}{Left 7}
 :? *:.forE::.forEach(() => {`{}}{`}});{End}{Left 9}
 :*:/try ::try{Space}
 :*:try ::try {`{}}{`}{Enter}{Down}{Space}catch (err) {`{}{Enter}{Up 2}
