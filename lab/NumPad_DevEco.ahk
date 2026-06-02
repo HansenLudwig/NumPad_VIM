@@ -20,13 +20,15 @@
 ; ? (问号): 即使热字串在另一个单词中也会被触发; 也就是说, 在它之前输入的字符是字母数字时. 例如, 如果 :?:al::airline 是热字串, 输入 "practical " 会产生 "practicairline ". 使用 ?0 来关闭此选项.
 ; B0: 【不】自动退格来删除您输入的缩写. 关闭此选项后可以使用 B 来启用. 
 :*:import{::import {`{} _ {End} from `'`';{Left 2}
-:O:import::import _ from `'`';{Left 2}
 :*:export{::export {`{} _ {End} from `'`';{Left 2}
+:O:import::import _ from `'`';{Left 2}
 ; :O:export::export _ from `'`';{Left 2}
 :*:/** ::{NumpadDiv}**  *{NumPadDiv}{Left 3}
+:*:/e/::// [End of ]{Left 1}
 :://::{NumpadDiv 2}
 :*:/$::$
-:*:$::${`{}
+:*:$$::${`{}
+:*:$r::$r({``}app.
 
 ; 注意：不要使用“ xxx"来定义热字串。会使得空格不被视为上一部分的终结符。
 ; 导致输入的“ xxx”被视为上一个单词的一部分（除非上一个单词以分隔符结尾，如：
@@ -34,12 +36,12 @@
 ; 常用运算符
 :*:eq ::={Space}
 :*:eqq ::=={Space}
+:*:neq ::{`!}={Space}
 :*:/ddy ::=={Space}
 :*:eeq ::==={Space}
 :*:/ddd ::==={Space}
 :*:aeq ::{NumPadAdd}={Space}
-:*:/jiantou ::jiantou{Space}
-:*: jiantou ::{Space}=> {`{}
+:O:/jiantou::() => {`{}
 :*:=> ::=> {`{}
 :*:/dy ::>{Space}
 :*:/xy ::>{Space}
@@ -61,18 +63,20 @@
 :O:return::return `;{Left}
 
 ; 常用代码块
-:? *:/if ::if{Space}
-:*:if ::if () {`{}}{Enter}{Up}{End}{Left 3}
-:O:/else::else{Space}
+:O:/if::if () {`{}}{Enter}{Up}{End}{Left 3}
 :*: else`n::{Space}else {`{}{Enter}
+:*:else`n::{Space}else {`{}{Enter}
 :*:else`n:: else {`{}{Enter}
-:*:/while ::while{Space}
-:O:while::while () {`{}{Enter}{Up}{End}{Left 3}
+:O:/while::while () {`{}{Enter}{Up}{End}{Left 3}
 ; :? *:/for ::for{Space}
-:*:for(::for ( `; `; ) {`{}{Enter}{Up}{End}{Left 7}
+:*:/for ::for (`; `; ) {`{}{Enter}{Up}{End}{Left 7}
 :? *:.forE::.forEach(() => {`{}}{`}});{End}{Left 9}
-:*:/try ::try{Space}
-:*:try ::try {`{}}{`}{Enter}{Down}{Space}catch (err) {`{}{Enter}{Up 2}
+; :*:/try ::try{Space}
+::/try::try {`{}}{`}{Enter}{Down}{Space}catch (err) {`{}{Enter}{Up 2}
+:*:Logger.err::Logger.error(TAG, {``}{End};{Left 3}
+; :? *:.error(::.error(TAG, {``}{End};{Left 3}
+:? *:.info(::.info(TAG, {``}{End};{Left 3}
+:? *:.debug(::.debug(TAG, {``}{End};{Left 3}
 
 ; 数据类型
 :? *:`: str::`: string
