@@ -104,13 +104,14 @@ internal_cmd(cmd) {
                 Run _val
                 SetWorkingDir A_InitialWorkingDir
             }
-            catch
+            catch {
                 MsgBox(_val, "404: File not Found!")
+            }
         } else {
             MsgBox(_val, "404: Shortcut not Found!")
         }
     }
-    SetSuspend()
+    UpdateSuspend()
     return
 }
 
@@ -122,11 +123,11 @@ internal_cmd(cmd) {
     Send "{Lwin}"
     ;Sleep 50
     Click 65, 1750 ; 65, 1200
-    SetSuspend()
+    UpdateSuspend()
     return
 }
 
-SetSuspend() {
+UpdateSuspend() {
     if (GetKeyState("NumLock", "T")) {
         Suspend True
     } else {
