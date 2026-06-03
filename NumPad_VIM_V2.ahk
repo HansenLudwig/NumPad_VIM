@@ -14,7 +14,7 @@ Suspend 1 ; 1: suspend all, 0: unsuspend, -1: On -> Off, Off -> On
 
 SendLevel 0
 #InputLevel 1
-#Include ".\lab\fn_lab.ahk" ; levenshtein_distance()
+#Include ".\lib\fn_lib.ahk" ; levenshtein_distance()
 
 #HotIf 1
 #SuspendExempt True
@@ -134,8 +134,8 @@ SetSuspend() {
     }
 }
 
-#Include ".\lab\NumPad_VIM.ahk"
-#Include ".\lab\NumPad_VSCode.ahk"
-#Include ".\lab\NumPad_DevEco.ahk"
+#Include ".\lib\NumPad_VIM.ahk"
+#Include ".\lib\NumPad_VSCode.ahk"
+#Include ".\lib\NumPad_DevEco.ahk"
 
-#Include ".\lab\NumPad_lab.ahk"
+#Include ".\lib\NumPad_lib.ahk"

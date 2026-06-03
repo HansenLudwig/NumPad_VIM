@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-#Include "fn_lab.ahk" ; levenshtein_distance()
+#Include "fn_lib.ahk" ; levenshtein_distance()
 
 #HotIf WinActive("ahk_exe devecostudio64.exe")
 

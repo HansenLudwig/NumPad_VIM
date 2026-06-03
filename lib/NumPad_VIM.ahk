@@ -1,6 +1,6 @@
 #Requires AutoHotkey v2.0
 
-#Include "fn_lab.ahk"
+#Include "fn_lib.ahk"
 
 presetVIM() {
     try {
