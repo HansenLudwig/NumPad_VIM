@@ -91,7 +91,8 @@ ImportConfigFromLocal() {
     Prompt := "
     (
     Current config will be overwrote by local preset.
-    It's suggest only BEFORE pulling files from Git! 
+    It's suggest only AFTER doing pull/merge!
+    After loading, you may need to do --skip-worktree to config.ini.
     Press OK to continue.
     )"
 
@@ -111,12 +112,14 @@ ImportConfigFromLocal() {
     
 }
 
+; Save your current config to local preset, so that you can roll it back and pulling/merging files from Git without worrying about losing your personal settings.
 ExportConfigToLocal() {
     Prompt := "
     (
     Local preset will be overwrote by current config.ini.
     You may lost your personal settings! 
-    This should only be proceed if you just pulled files from Git! 
+    This should only be proceed BEFORE you try to do pull/merge and get files from Git!
+    After saving, you can roll back config.ini and do pull/merge without conflict.
     Press OK to continue.
     )"
 
