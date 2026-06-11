@@ -1,3 +1,4 @@
 *.ini
 *.vscode
+.config_backup
 tmp.py
