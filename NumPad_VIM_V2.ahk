@@ -135,6 +135,7 @@ UpdateSuspend() {
     }
 }
 
+#Include ".\lib\Hotkey_onDeck.ahk"
 #Include ".\lib\NumPad_VIM.ahk"
 #Include ".\lib\NumPad_VSCode.ahk"
 #Include ".\lib\NumPad_DevEco.ahk"
