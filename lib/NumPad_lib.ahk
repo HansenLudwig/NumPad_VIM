@@ -1,5 +1,13 @@
 ﻿#Requires AutoHotkey v2.0
 
+global physicalLCtrl := false
+
+~*LCtrl::physicalLCtrl := true
+~*LCtrl Up::physicalLCtrl := false
+
+; !: Alt, >!: rAlt
+; ^: Ctrl
+
 #HotIf GetKeyState("NumLock", "T")
 ~NumLock::
 {
@@ -69,7 +77,6 @@ ShowWindowTitle() {
     
     ; 在鼠标位置附近显示ToolTip（偏移+20像素避免遮挡鼠标指针）
     ToolTip(activeWindowTitle, mouseX + 20, mouseY + 20)
-    ; MsgBox(activeWindowTitle)
     
     ; 设置定时器，1.5秒后自动移除ToolTip
     SetTimer(RemoveToolTip, -5000)

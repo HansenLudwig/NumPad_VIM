@@ -22,7 +22,7 @@ SendLevel 0
 internal_cmd(cmd) {
     if cmd = "list" {
         _val := IniRead("config.ini", "SHORTCUTS")
-        MsgBox(_val, "List of shortcuts")
+        MsgBox(_val, "List of shortcuts", 'OK T15')
         return 1
     } else if cmd = "Reload" {
         Reload
@@ -42,7 +42,7 @@ internal_cmd(cmd) {
             IniWrite(1, "config.ini", "Switches", "VIM")
         }
         vim_switch := IniRead("config.ini", "Switches", "VIM")
-        MsgBox "VIM mode set to: " (vim_switch = "1" ? "ON" : "OFF")
+        MsgBox("VIM mode set to: " (vim_switch = "1" ? "ON" : "OFF"), "VIM Mode", 'OK T5')
         return 1
     }
     return 0 ; not internal command
@@ -105,10 +105,10 @@ internal_cmd(cmd) {
                 SetWorkingDir A_InitialWorkingDir
             }
             catch {
-                MsgBox(_val, "404: File not Found!")
+                MsgBox(_val, "404: File not Found!", 'OK T5')
             }
         } else {
-            MsgBox(_val, "404: Shortcut not Found!")
+            MsgBox(_val, "404: Shortcut not Found!", 'OK T5')
         }
     }
     UpdateSuspend()

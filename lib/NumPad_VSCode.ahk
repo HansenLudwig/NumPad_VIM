@@ -4,6 +4,9 @@
 
 #HotIf WinActive("ahk_exe Code.exe")
 
+; !: Alt, >!: rAlt
+; ^: Ctrl
+
 ~^s:: ; Ctrl + S || Win + D: Reload
 ~#d:: { ; Only for VSCode which should be my ahk editor.
     Suspend false

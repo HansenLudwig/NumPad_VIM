@@ -14,6 +14,9 @@ presetVIM()
 
 #HotIf IniRead("config.ini", "Switches", "VIM")
 
+; !: Alt, >!: rAlt
+; ^: Ctrl
+
 *>!J:: { ; [Ctrl|Shift]+ Alt+J
     Suspend false
     Send_HK("{Left}")
