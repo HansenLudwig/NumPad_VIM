@@ -2,3 +2,4 @@
 *.vscode
 .config_backup
 tmp.py
+config_local.ini
