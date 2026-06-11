@@ -90,12 +90,12 @@ RemoveToolTip() {
 ImportConfigFromLocal() {
     Prompt := "
     (
-    Local preset will overwrite current config.
+    Current config will be overwrote by local preset.
     It's suggest only BEFORE pulling files from Git! 
     Press OK to continue.
     )"
 
-    user_choise := MsgBox(Prompt, "Warning", "OKCancel")
+    user_choise := MsgBox(Prompt, "Warning: before LOADING local", "OKCancel")
     If user_choise = "Cancel" {
         Return
     }
@@ -114,13 +114,13 @@ ImportConfigFromLocal() {
 ExportConfigToLocal() {
     Prompt := "
     (
-    Current config.ini will overwrite local preset.
+    Local preset will be overwrote by current config.ini.
     You may lost your personal settings! 
     This should only be proceed if you just pulled files from Git! 
     Press OK to continue.
     )"
 
-    user_choise := MsgBox(Prompt, "Warning", 0x11) ; 0x11 = OK, Cancel + Exclamation (!)
+    user_choise := MsgBox(Prompt, "Warning: before overwriting local", 0x11) ; 0x11 = OK, Cancel + Exclamation (!)
     If user_choise = "Cancel" {
         Return
     }

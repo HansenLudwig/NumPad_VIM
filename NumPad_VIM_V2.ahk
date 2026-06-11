@@ -47,7 +47,7 @@ internal_cmd(cmd) {
     } else if cmd = "save config" {
         ExportConfigToLocal()
         return 1
-    } else If cmd = "load config" {
+    } else if cmd = "load config" {
         ImportConfigFromLocal()
         return 1
     }
