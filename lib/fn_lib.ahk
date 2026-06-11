@@ -2,12 +2,21 @@
 
 
 Send_HK(key) {
-    _ctrl := GetKeyState("LControl", "P")
+    global physicalLCtrl
+    _ctrl := GetKeyState("Control")
     _shift := GetKeyState("Shift", "P")
-    if _ctrl == 1
+    ; Debug:
+    _lctrl := physicalLCtrl ; GetKeyState("LControl")
+    _rctrl := GetKeyState("RControl")
+    ; ToolTip("Ctrl:" . _lctrl . _rctrl ", Shift:" . _shift)
+
+    if _ctrl == 1 {
         key := "^" . key
-    if _shift == 1
+    }
+    if _shift == 1 {
         key := "+" . key
+    }
+
     Send key
     Suspend true
     return
